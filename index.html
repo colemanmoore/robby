@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Robby by colemanmoore</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Robby</h1>
+      <h2 class="project-tagline">Experiment in genetic algorithms</h2>
+      <a href="https://github.com/colemanmoore/robby" class="btn">View on GitHub</a>
+      <a href="https://github.com/colemanmoore/robby/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/colemanmoore/robby/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <p>ROBBY
+README.txt
+Coleman Moore</p>
+
+<p>Robby is a simulation of an evolutionary/genetic algorithm. The problem is primarily taken from Melanie Mitchell, Complexity: A Guided Tour. Oxford University Press 2009.</p>
+
+<h2>
+<a id="the-task" class="anchor" href="#the-task" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Task</h2>
+
+<p>Run a simulation in which a handful of rule-based robots are independently assigned the task of traveling around a two dimensional grid which has random coordinates marked as "dirty," and marking those coordinates as "clean." The robots only know the states of their current coordinate and the cells to their north, south, east, and west at any given time. Each robot's "DNA" consists of a list of rules that determine what to do based on the states of the five observable cells, and the six possible "moves" it can make: clean the current cell, move north, move south, move east, move west, stay put.</p>
+
+<h2>
+<a id="the-metric" class="anchor" href="#the-metric" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Metric</h2>
+
+<p>To measure how well a given rule-set executes the task, a robot is given a score. Every time a robot travels in the direction of an immediately adjacent wall (edge of the grid), it loses 5 points. Every time a robot's rule-set instructs it to clean the cell when the cell is not marked as dirty, it loses 1 point. If a robot cleans a cell that is indeed marked as dirty, it is awarded 10 points. These points numbers are taken from Mitchell and currently hard-coded.</p>
+
+<h2>
+<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How it works</h2>
+
+<p>When the program is run, a generation of a given number of robots is created, all with random "DNA," or rule-sets. Each robot is allowed a certain number of cleaning sessions to perform during its life and a certain number of moves per cleaning session. The robot's overall fitness is the running average of the scores it has earned in all the cleaning sessions over the course of its life. When every robot in a generation has been measured for fitness, we have them mate to create a new generation. To choose mates, the program uses a 90% chance of picking two parents from the fitter 20% of the population. The rule-sets of the two parents are combined by splitting them at complementary points and concatenating. When two robots are bred, the program provides a 10% chance for a randomized mutation in any gene (rule) copied over. All of the above probabilities are currently hard-coded but worthy of experiment.</p>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>The number of generations bred, the size of each generation, the number of cleaning sessions comprising the life of a robot, and the number of moves allowed per cleaning session, are configurable at runtime as such:</p>
+
+<p>java Robby [generations] [generation size] [sessions] [moves]</p>
+
+<h2>
+<a id="output" class="anchor" href="#output" aria-hidden="true"><span class="octicon octicon-link"></span></a>Output</h2>
+
+<p>Robby will print a running display for each generation, giving the highest fitness score of that generation, and the "DNA" string, or rule-set, which accomplished that score. The DNA is merely a string of 243 integers 0-5 representing which moves (6 possible) to perform in which situations (of which there are 243). This string is printed so that the user can look for visual patterns over the course of the generations, but he or she probably won't find it any more meaningful than that..</p>
+
+<p>Example output:
+(Gen 0) -28.47     25540115115...</p>
+
+<p>At the end of the simulation, Robby prints the DNA string with the highest fitness score over the course of all generations.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/colemanmoore/robby">Robby</a> is maintained by <a href="https://github.com/colemanmoore">colemanmoore</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
